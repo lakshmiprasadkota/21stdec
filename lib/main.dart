@@ -1,4 +1,5 @@
 import 'package:classes/secondPage.dart';
+import 'package:classes/thirdScreen.dart';
 import 'package:flutter/material.dart';
 void main(){
   runApp(MyApp());
@@ -14,8 +15,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-
-      home:HomePage()
+  debugShowCheckedModeBanner: false,
+      home: HomePage()
     );
   }
 }
@@ -41,9 +42,10 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(children: [
             Container(
+              padding: EdgeInsets.symmetric(vertical: 10),
               margin: EdgeInsets.all(10),
               alignment: Alignment.topLeft,
-              child: Text("Hi,Alina!" , style: TextStyle(color:Color(0xff535353), fontWeight: FontWeight.bold , fontSize: 18) ,),
+              child: Text("Hi,Alina!" , style: TextStyle(color:Colors.black, fontWeight: FontWeight.bold , fontSize: 18) ,),
             ),
             Container(
               margin: EdgeInsets.all(10),
@@ -54,9 +56,9 @@ class _HomePageState extends State<HomePage> {
                   filled: true ,
                   isDense: true,
                   fillColor: Colors.white,
-                  prefixIcon: Icon(Icons.search_rounded ,color: Color(0xffd5d7d6),),
+                  prefixIcon: Icon(Icons.search_sharp ,color: Colors.black54, size: 25,),
                   hintText: "Music",
-                  hintStyle: TextStyle(color: Color(0xffd0d0d2), fontSize: 14, fontWeight: FontWeight.w900 ),
+                  hintStyle: TextStyle(color: Color(0xffd0d0d2), fontSize: 14, fontWeight: FontWeight.w600 ),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.transparent , )
@@ -79,25 +81,27 @@ class _HomePageState extends State<HomePage> {
                       ClipRRect(
 
                         child: Image.asset("Assets/images/miq.jpg"),
-                        borderRadius: BorderRadius.circular(20),),
+                        borderRadius: BorderRadius.circular(8),),
                       Positioned(
                           left: 20 , top:40,
                           child: Text("Why You Should choose\nDragon Coach ?" , style: TextStyle(
                               fontSize: 16,
-                              color: Colors.white , fontWeight: FontWeight.w900),)),
+                              color: Colors.white , fontWeight: FontWeight.w700),)),
                       Positioned(
-                          bottom: 50 , left: 20,
+                          bottom: 43 , left: 20,
                           child: Text("There are many good teachers" , style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 13,
                               color: Colors.white , fontWeight: FontWeight.w400),))
                     ],
                   ),
+                  SizedBox(height: 30,),
                   Container(
                     alignment: Alignment.topLeft,
-                    child: Text("Features"  ,style: TextStyle(color: Color(0xff545557), fontWeight: FontWeight.bold, fontSize: 18),),
+                    child: Text("Features"  ,style: TextStyle(color: Color(0xff545557), fontWeight: FontWeight.bold, fontSize: 15),),
                   ),
+                  SizedBox(height: 10,),
                   Container(
-                    height: 100,
+                    height: 130,
                     child: ListView.builder(
                         itemCount: listIcons.length,
                         shrinkWrap: true,
@@ -120,10 +124,12 @@ class _HomePageState extends State<HomePage> {
 
                         }),
                   ),
+                  SizedBox(height: 10,),
                   Container(
                     alignment: Alignment.topLeft,
-                    child: Text("My Upcoming Classes" , style: TextStyle(color: Colors.black , fontSize: 18 , fontWeight: FontWeight.bold),),
+                    child: Text("My Upcoming Classes" , style: TextStyle(color: Color(0xff545557), fontSize: 15 , fontWeight: FontWeight.bold),),
                   ),
+                  SizedBox(height: 15,),
                   Container(
                     height: 230,
                     child: ListView.builder(
@@ -153,10 +159,12 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.white,
         elevation: 5,
         items: [
-          BottomNavigationBarItem(icon: IconButton(icon: Icon(Icons.shop_rounded), ),label: "" ,),
+          BottomNavigationBarItem( icon: IconButton(icon: Icon(Icons.shop_rounded),onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));},),label: ''),
+
           BottomNavigationBarItem(icon: Icon(Icons.notifications) ,label: ""),
           BottomNavigationBarItem(icon: IconButton(icon:Icon(Icons.library_books),onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>SecondPage()));},),label: ''),
-          BottomNavigationBarItem(icon: Icon(Icons.person) , label: "")
+          BottomNavigationBarItem( icon: IconButton(icon: Icon(Icons.person),onPressed: (){ Navigator.push(context, MaterialPageRoute(builder: (context)=>Bookoptions ()));},),label: ''),
+
         ],
       ),
     );
@@ -186,39 +194,40 @@ class _FeaturesListState extends State<FeaturesList> {
 
          children: [
            Container(
-             height: 50,
-             width: 50,
-             child: Center(child: Image.asset(widget.listIcon , height: 30, width: 30, color: widget.active!= widget.text? Color(0xff6c6e6d): Colors.black,)),
+             height: 60,
+             width: 60,
+             child: Center(child: Image.asset(widget.listIcon , height: 30, width: 30, color: widget.active!= widget.text? Color(0xff6c6e6d): Colors.black54,)),
              decoration: widget.active != widget.text ? BoxDecoration(
-                 borderRadius: BorderRadius.circular(10),
+                 borderRadius: BorderRadius.circular(7),
                  color: Colors.white,
                  boxShadow: [
                    BoxShadow(
-                       offset: Offset(0,3),
+                       offset: Offset(0,5),
                        color: Colors.white,
-                       blurRadius: 1
+                       blurRadius: 6
 
                    )
                  ]
              ) : BoxDecoration(
-               borderRadius: BorderRadius.circular(10),
+               borderRadius: BorderRadius.circular(8),
                color: Color(0xff16b06d),
                boxShadow: [
                  BoxShadow(
-                   offset: Offset(0,6),
-                   color: Color(0xff16b06d),
-                   blurRadius: 1
+                   offset: Offset(0,5),
+                   color: Color(0xffd5e8e2),
+                   blurRadius: 5,
+
 
                  )
                ]
              ),
            ),
            SizedBox(height: 20,),
-           Text(widget.text , style: TextStyle(color: widget.active!= widget.text? Color(0xff6c6e6d): Color(0xff16b06d),),)
+           Text(widget.text , style: TextStyle(color: widget.active!= widget.text? Color(0xff6c6e6d): Color(0xff16b06d),fontSize: 12, fontWeight: FontWeight.w400),  )
          
          ],
        ),
-       SizedBox(width: 50,)
+       SizedBox(width: 40,)
 
      ],
     );
@@ -262,16 +271,25 @@ class _GiterListClassState extends State<GiterListClass> {
                             Container(
                               height: 160,
                               width:340,
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                           color: Colors.grey,
+                                        offset: Offset(6,0),
+                                        blurRadius: 5
+                                    )
+                                  ]
+                              ),
 
                               child:  ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(5),
                                   child: Image.asset(widget.giterImage , fit: BoxFit.cover, )),
                             ),
                             Container(
 
 
                                 padding: EdgeInsets.only(left: 10,top: 10 , right: 20),
-                              child: Text(widget.giterText))
+                              child: Text(widget.giterText , style: TextStyle(color: Colors.black54 , fontWeight: FontWeight.w600),))
                           ],
                         )
 
